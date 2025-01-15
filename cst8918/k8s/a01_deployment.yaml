@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -11,7 +10,6 @@ spec:
   selector:
     matchLabels:
       app: weather-app
-  # This is the pod template
   template:
     metadata:
       labels:
@@ -19,7 +17,6 @@ spec:
     spec:
       containers:
         - name: weather-app-container
-          # this is the Docker image that you created
           image: aakashsidhu/cst8918-a01-weather-app:latest
           ports:
             - containerPort: 8080
@@ -36,8 +33,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-                  - name: WEATHER_API_KEY
-  valueFrom:
-    secretKeyRef:
-      name: weather
-      key: api-key
+            - name: WEATHER_API_KEY
+              value: "8d58e6e3c35955cda8a6ed20e4a095c0"
+
